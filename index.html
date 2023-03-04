@@ -10,14 +10,21 @@
 </head>
 <body>
     <form>
-        <label for="citySearch">City:</label>
-        <input type="text" name="citySearch" id="citySearch" placeholder="brooklyn" required>
-        <label for="stateSearch">State:</label>
-        <input type="text" name="stateSearch" id="stateSearch" placeholder="ny">
-        <label for="countrySearch">Country:</label>
-        <input type="text" name="countrySearch" id="countrySearch" placeholder="us">
-        <button type="submit" id="searchButton">Search</button>
+        <input type="text" name="citySearch" id="citySearch" placeholder="Enter City" required>
     </form>
+    <div id="container">
+        <div id="icon">
+            <img src="images/weather-sunny.svg" width="85" height="85">
+        </div>
+        <div id="temp-loc">
+            <div id="loc">
+                <p id="cityD"></p>
+                <p id="countryD"></p>
+            </div>
+            <div id="temp">
 
+            </div>
+        </div>
+    </div>
 </body>
 </html>
