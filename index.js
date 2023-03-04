@@ -29,16 +29,21 @@ const apiCalls = (function(){
 
 const displayController = (function(){
     let data;
+    const container = document.querySelector('#container');
     const form = document.querySelector('form');
     const city = document.querySelector('#citySearch');
     const cityDisplay = document.querySelector('#cityD');
     const countryDisplay = document.querySelector('#countryD');
     const tempDiv = document.querySelector('#temp');
+    const pic = document.querySelector('#pic');
     form.addEventListener('submit', async function(e){
         e.preventDefault();
         data =  await apiCalls.getWeatherData(city.value);
+        container.setAttribute('style', 'display:block');
         displayLocation();
         displayTemp();
+        displayPic();
+        displayBottomInfo();
         form.reset();
     });
 
@@ -55,5 +60,37 @@ const displayController = (function(){
     function displayTemp(){
         tempDiv.innerHTML = `${temp.toFahrenheit(data.main.temp)}°`;
     }
+
+    function displayPic(){
+        if(data.weather[0].main == 'Rain'){
+            pic.setAttribute('src', 'images/weather-rainy.svg');
+        }
+        else if(data.weather[0].main == 'Clouds'){
+            pic.setAttribute('src', 'images/weather-cloudy.svg');
+        }
+        else if(data.weather[0].main == 'Clear'){
+            pic.setAttribute('src', 'images/weather-sunny.svg');
+        }
+        else if(data.weather[0].main == 'Snow'){
+            pic.setAttribute('src', 'images/weather-snowy.svg');
+        }
+        else if(data.weather[0].main == 'Thunderstorm'){
+            pic.setAttribute('src', 'images/lightning-rainy.svg');
+        }
+    }
+
+    function displayBottomInfo(){
+        const fl = document.querySelector('#five');
+        fl.innerHTML = temp.toFahrenheit(data.main.feels_like);
+        const minT = document.querySelector('#one');
+        minT.innerHTML = temp.toFahrenheit(data.main.temp_min);
+        const maxT = document.querySelector('#two');
+        maxT.innerHTML = temp.toFahrenheit(data.main.temp_max);
+        const windSp = document.querySelector('#three');
+        windSp.innerHTML = data.wind.speed;
+        const humid = document.querySelector('#four');
+        humid.innerHTML = data.main.humidity;
+    }
+
     return{};
 })();
