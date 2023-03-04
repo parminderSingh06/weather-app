@@ -33,7 +33,7 @@ form{
 
 #container{
     display: none;
-    border: 1px solid black;
+    border: 1px solid transparent;
     border-radius: 8px;
     height: 80vh;
     width:450px;
@@ -48,6 +48,7 @@ form{
 #temp-loc{
     display: flex;
     justify-content: space-between;
+    color: aliceblue;
 }
 
 #temp{
@@ -75,4 +76,26 @@ form{
 #rand-container p{
     font-weight: 500;
     font-size: 24px;
+    color: aliceblue;
+}
+
+#citySearch{
+    border: 3px solid lightblue;
+    border-radius: 8px;
+    height: 28px;
+    width: 200px;
+}
+
+#citySearch:focus
+{
+    outline: none;
+    box-shadow: 10px 5px 5px lightblue;
+}
+
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }

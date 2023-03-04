@@ -39,7 +39,8 @@ const displayController = (function(){
     form.addEventListener('submit', async function(e){
         e.preventDefault();
         data =  await apiCalls.getWeatherData(city.value);
-        container.setAttribute('style', 'display:block');
+        container.style.display = 'block';
+        runJokes();
         displayLocation();
         displayTemp();
         displayPic();
@@ -64,18 +65,23 @@ const displayController = (function(){
     function displayPic(){
         if(data.weather[0].main == 'Rain'){
             pic.setAttribute('src', 'images/weather-rainy.svg');
+            container.style.backgroundColor = '#9ca3af';
         }
         else if(data.weather[0].main == 'Clouds'){
             pic.setAttribute('src', 'images/weather-cloudy.svg');
+            container.style.backgroundColor = '#9ca3af';
         }
         else if(data.weather[0].main == 'Clear'){
             pic.setAttribute('src', 'images/weather-sunny.svg');
+            container.style.backgroundColor = '#7dd3fc';
         }
         else if(data.weather[0].main == 'Snow'){
             pic.setAttribute('src', 'images/weather-snowy.svg');
+            container.style.backgroundColor = '#d8b4fe';
         }
         else if(data.weather[0].main == 'Thunderstorm'){
             pic.setAttribute('src', 'images/lightning-rainy.svg');
+            container.style.backgroundColor = '#475569';
         }
     }
 
@@ -90,6 +96,14 @@ const displayController = (function(){
         windSp.innerHTML = data.wind.speed;
         const humid = document.querySelector('#four');
         humid.innerHTML = data.main.humidity;
+    }
+
+    function runJokes(){
+        const sound = document.querySelector('#gaddi');
+        if(data.name == "Brampton")
+        {
+        sound.play();
+        }
     }
 
     return{};
